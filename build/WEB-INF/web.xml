@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app>
+    <display-name>Tenista</display-name>
+    <description>
+        Este proyecto contiene un web-app que sera publicado en tomcat.
+    </description>
+        <servlet>
+            <servlet-name>ControlAlumnos</servlet-name>
+            <servlet-class>edu.ipn.upiicsa.tenis.controlador.ControladorAlumnos</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>ControlAlumnos</servlet-name>
+            <url-pattern>/alumno</url-pattern>
+        </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>
+            index.html
+        </welcome-file>
+    </welcome-file-list>
+    
+</web-app>

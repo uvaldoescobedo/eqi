@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<project name="eqi" basedir="." default="principal">
+    <property name="project.title" value="${ant.project.name}"/>
+    <property name="project.version" value=""/>
+    <property environment="env"/>
+    <property name="tomcat.home" value="${env.UPIICSA_HOME}"/>
+         <path id="compile.classpath">
+        <pathelement location="${tomcat.home}/lib/servlet-api.jar"/>
+        <pathelement location="${tomcat.home}/lib/mysql-connector-java-8.0.20.jar"/>
+    </path>
+    <path id="run.classpath">
+        <path refid="compile.classpath"/>
+    </path>
+<property name="lib.dir" value="src/lib"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="/*.jar"/>
+    </path>
+ 	<target	name="borra"
+		description="borra class y jar anteriores">
+		<delete	dir="./build" />
+		<echo>Distribucion anterior borrada...</echo>
+	</target>
+<!-- CREACION DE CARPETAS-->
+
+	<target name="inicia" description="fabrica carpetas para class y jar">
+        <mkdir dir="./build/WEB-INF/lib"/>
+        <mkdir dir="./build/WEB-INF/templates"/>
+        <mkdir dir="./build/WEB-INF/classes"/>
+        <echo>Nuevas carpetas creadas...</echo>
+    </target>
+
+<!-- COPIA ARCHIVOS-->
+
+ <target name="copia" description="Copia los archivos necesarios para funcionar">
+
+        <copy todir="./build/WEB-INF" overwrite="true">
+            <fileset dir="./src/main/webapp/WEB-INF" includes="web.xml"/>
+        </copy>
+        <copy todir="./build/WEB-INF/lib" overwrite="true">
+            <fileset dir="./src/lib" includes="*.jar"/>
+        </copy>
+        <copy todir="./build" overwrite="true">
+            <fileset dir="./src/main/webapp/public" includes="**/*.*"/>
+        </copy>
+        <echo>Archivos copiados</echo>
+    </target>
+
+<!-- COMPILACION-->
+
+ <target name="compila" description="compila todos los fuentes">
+         <echo message="*************************************************************"/>
+		 <echo message="* Para compilar es necesario                                *"/>
+		 <echo message="* copiar las librerias servlet-api.jar                      *"/>
+		 <echo message="* y mysql-connector-java-8.0.20.jar                         *"/>
+		 <echo message="* a la carpeta:                                             *"/>
+		 <echo message="* ${tomcat.home}\lib"/>
+		 <echo message="*************************************************************"/>
+        <javac destdir="./build/WEB-INF/classes" srcdir="./src/main/java">
+            <classpath refid="classpath"/>
+            <classpath refid="compile.classpath"/>
+            <include name="**/*.java"/>
+        </javac>
+        <echo>Compilacion terminada...</echo>
+    </target>
+
+
+<!-- DESPUBLICAR-->
+
+<target name="despublica"
+		description="Da de baja la aplicacion al contenedor de servlets">
+        <echo message="Borrando en ${tomcat.home}/webapps"/>
+        <echo message="carpeta ${project.title}${project.version}"/>
+			<delete	dir="${tomcat.home}/webapps/${project.title}${project.version}" />
+		<echo>Distribucion anterior borrada...</echo>
+
+	</target>
+
+<!-- PUBLICA-->
+
+	   <target name="publica" description="Subir la aplicacion al contenedor de servlets">
+        <mkdir dir="${tomcat.home}/webapps/${project.title}${project.version}"/>
+        <copy toDir="${tomcat.home}/webapps/${project.title}${project.version}"
+              overwrite="true"
+              includeemptydirs="true">
+            <fileset dir="./build">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+<!-- PROCESO -->
+    <target name="principal"
+            depends="borra,
+			        inicia,
+                    copia,
+					compila,
+					despublica,
+					publica"
+            description="inicia fabricacion de nueva version">
+        <echo>Terminando proceso...</echo>
+
+
+<!-- LISTA DE EXPLICACION -->
+ <echo message="Se ha publicado un web-app en "/>
+        <echo message="${tomcat.home}/webapps/"/>
+        <echo message="El web-app se llama"/>
+        <echo message="${project.title}${project.version}"/>
+        <echo message="Para usarse, hay que escribir en la barra"/>
+        <echo message="de direcciones del navegador el siguiente URI:"/>
+        <echo message="http://localhost:8080/${project.title}${project.version}/html/index.html"/>
+        <echo message="Realizado por:"/>
+		<echo message="Martinez Cruces Alexis"/>
+		<echo message="Escobedo Garcia Pedro Uvaldo"/>
+		<echo message="Barrera Cornejo Ricardo Isahi"/>
+
+    </target>
+
+</project>
