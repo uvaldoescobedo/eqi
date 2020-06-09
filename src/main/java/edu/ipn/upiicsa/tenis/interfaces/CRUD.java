@@ -8,5 +8,7 @@ public interface CRUD {
     public List listar();
 
     public Alumno list(int id);
+    
+    public Alumno delet(int id);
 
 }
