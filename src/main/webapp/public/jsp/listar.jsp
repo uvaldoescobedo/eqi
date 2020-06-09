@@ -95,6 +95,7 @@ margin: 40px ;
         </div>
     </div>  
    <input class="button" type="button" onclick="history.back()" value="Inicio">
+    <a class="button" btn-lg centrado" href="../alumno?accion=borrar">Borrar registro</a>	    
 </body>
 
 </html>
