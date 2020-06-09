@@ -58,4 +58,16 @@ public class AlumnoDAO implements CRUD{
         }	 catch (Exception e) {
         } return a;
     }
+	
+	
+		@Override
+    public Alumno delet(int id) {
+        String sql="delete from tenista where TENSID="+id;
+        try {
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+        }	 catch (Exception e) {
+        } return a;
+    }
 }
