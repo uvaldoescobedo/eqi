@@ -94,7 +94,9 @@ margin: 40px ;
             </table>
         </div>
     </div>  
-   <input class="button" type="button" onclick="history.back()" value="Inicio">
+ 
+   <a class="button"  href="../eqi/alumno?accion=index">Inicio</a>
+    <a class="button" btn-lg centrado" href="../eqi/alumno?accion=borrar">Borrar registro</a>	    
 </body>
 
 </html>

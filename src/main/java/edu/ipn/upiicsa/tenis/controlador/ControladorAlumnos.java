@@ -13,9 +13,11 @@ import edu.ipn.upiicsa.tenis.modelodao.AlumnoDAO;
 
 
 public class ControladorAlumnos extends HttpServlet {
-	
+	String index="html/index.html";
 	String listar="jsp/listar.jsp";
-
+	String borrar="jsp/borrar.jsp";
+	String confirmacion="jsp/confirmacion.jsp";
+	String exitoso ="jsp/exitoso.jsp";
     Alumno p=new Alumno();
     AlumnoDAO dao=new AlumnoDAO();
     int id;
@@ -24,8 +26,17 @@ public class ControladorAlumnos extends HttpServlet {
             throws ServletException, IOException {
 			String acceso="";
         String action=request.getParameter("accion");
-        if(action.equalsIgnoreCase("listar")){
+        
+        if(action.equalsIgnoreCase("index")){
+            acceso=index;
+        }else if(action.equalsIgnoreCase("listar")){
             acceso=listar;
+        }else if(action.equalsIgnoreCase("borrar")){
+            acceso=borrar;
+        }else if(action.equalsIgnoreCase("confirmacion")) {
+        	acceso=confirmacion;
+        }else if(action.equalsIgnoreCase("exitoso")) {
+        	acceso=exitoso;
         }
         RequestDispatcher vista=request.getRequestDispatcher(acceso);
         vista.forward(request, response);

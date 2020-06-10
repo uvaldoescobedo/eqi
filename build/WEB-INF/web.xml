@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <web-app>
-    <display-name>Tenista</display-name>
+    <display-name>Alumno</display-name>
     <description>
         Este proyecto contiene un web-app que sera publicado en tomcat.
     </description>
