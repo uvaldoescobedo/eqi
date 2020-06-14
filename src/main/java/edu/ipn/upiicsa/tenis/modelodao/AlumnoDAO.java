@@ -42,8 +42,9 @@ public class AlumnoDAO implements CRUD{
 	}
 
 	@Override
-    public Alumno list(int id) {
-        String sql="select * from alumnos where ALUMID="+id;
+    public Alumno search(String id) {
+		
+        String sql="select * from alumnos where ALUMID="+Integer.parseInt(id);
         try {
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
@@ -61,8 +62,8 @@ public class AlumnoDAO implements CRUD{
 	
 	
 		@Override
-    public Alumno delet(int id) {
-        String sql="delete from alumnos where ALUMID="+id;
+    public Alumno delet(String id) {
+        String sql="delete from alumnos where ALUMID="+Integer.parseInt(id);
         try {
             con=cn.getConnection();
             ps=con.prepareStatement(sql);

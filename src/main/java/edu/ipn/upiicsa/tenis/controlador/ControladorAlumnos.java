@@ -16,8 +16,8 @@ public class ControladorAlumnos extends HttpServlet {
 	String index="html/index.html";
 	String listar="jsp/listar.jsp";
 	String borrar="jsp/borrar.jsp";
-	String confirmacion="jsp/confirmacion.jsp";
-	String exitoso ="jsp/exitoso.jsp";
+	String confirmacion="/jsp/confirmacion.jsp";
+	String exitoso ="/jsp/exitoso.jsp";
     Alumno p=new Alumno();
     AlumnoDAO dao=new AlumnoDAO();
     int id;
@@ -34,10 +34,17 @@ public class ControladorAlumnos extends HttpServlet {
         }else if(action.equalsIgnoreCase("borrar")){
             acceso=borrar;
         }else if(action.equalsIgnoreCase("confirmacion")) {
+        	
         	acceso=confirmacion;
+        	getServletContext().getRequestDispatcher(acceso).forward(request, response);
+    
         }else if(action.equalsIgnoreCase("exitoso")) {
         	acceso=exitoso;
+        	getServletContext().getRequestDispatcher(acceso).forward(request, response);
+        	   
         }
+        
+
         RequestDispatcher vista=request.getRequestDispatcher(acceso);
         vista.forward(request, response);
 

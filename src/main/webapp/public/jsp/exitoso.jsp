@@ -81,6 +81,7 @@ p{
         <div class="row">
            <div class="borrar">
               <p>Borrado de registro exitoso</p>
+              <%="Usuario: " + request.getParameter("idalumno")%>
                 <a class="button" btn-lg centrado" href="../eqi/alumno?accion=index">Inicio</a>
             </div>  
           </div>

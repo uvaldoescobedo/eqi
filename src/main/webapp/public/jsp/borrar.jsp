@@ -81,11 +81,25 @@ p{
         <div class="row">
            <div class="borrar">
                <p>Borrado de registro</p>
-               <p>
-                Clave del registro: <input type="text" name="idalumno"></p>
-                <input class="button" type="button" onclick="history.back()" value="Regresar">
-                <a class="button" btn-lg centrado" href="../eqi/alumno?accion=confirmacion">Continuar</a>
-            </div>  
+               
+               <table>
+		<form method="get">
+			<tr>
+				<td>Id del REgistro</td>
+				<td><input type="text" name="idalumno"></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="accion" value="confirmacion"></td>
+				<td><input type="submit" class="button" value="Continuar"></td>
+			</tr>
+			<tr>
+			</tr>
+		</form>
+</table> 
+<input class="button" type="button" onclick="history.back()" value="Regresar">
+			
+	
+         </div>  
           </div>
         </div>
 </body>

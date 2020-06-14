@@ -7,8 +7,8 @@ import java.util.List;
 public interface CRUD {
     public List listar();
 
-    public Alumno list(int id);
+    public Alumno search(String id);
     
-    public Alumno delet(int id);
+    public Alumno delet(String id);
 
 }
